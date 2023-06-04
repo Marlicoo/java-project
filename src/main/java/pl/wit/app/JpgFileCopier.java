@@ -17,6 +17,9 @@ public class JpgFileCopier {
     public static void copyJpgFiles(String sourceDir, String destinationDir) throws IOException {
         File sourceFolder = new File(sourceDir);
         File destinationFolder = new File(destinationDir);
+        
+		System.out.println("Rozpoczecie kopiowania");
+
 
         // Sprawdzenie istnienia folderu docelowego i utworzenie go, jeśli nie istnieje
         if (!destinationFolder.exists()) {
