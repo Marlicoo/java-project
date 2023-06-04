@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -15,37 +16,64 @@ import javax.swing.JPanel;
 import javax.swing.filechooser.FileSystemView;
 
 public class DirectoryChooser extends JFrame implements ActionListener {
-	static JLabel l;
-	File file;
+    static JLabel l;
+    File sourceDir;
+    File destinationDir;
 
-	JFileChooser chooser;
-	String choosertitle;
+    JFileChooser chooser;
+    String choosertitle;
 
-	public DirectoryChooser() {
-		super("Kopiowanie plików JPG");
-	}
+    public DirectoryChooser() {
+        super("Kopiowanie plików JPG");
 
-	public void actionPerformed(ActionEvent evt) {
-		String com = evt.getActionCommand();
+        JButton startButton = new JButton("Start");
+        startButton.addActionListener(this);
 
-		if (com.equals("Start")) {
-			// to do
-		}
+        JPanel panel = new JPanel();
+        panel.add(startButton);
+        getContentPane().add(panel);
+    }
 
-		else {
-			JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-			j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    public void actionPerformed(ActionEvent evt) {
+        String com = evt.getActionCommand();
 
-			int r = j.showOpenDialog(null);
+        if (com.equals("Start")) {
+            if (sourceDir == null || destinationDir == null) {
+                l.setText("Proszę wybrać folder źródłowy i folder docelowy");
+                return;
+            }
 
-			if (r == JFileChooser.APPROVE_OPTION) {
-				l.setText(j.getSelectedFile().getAbsolutePath());
-			} else
-				l.setText("the user cancelled the operation");
-		}
-	}
+            try {
+                // Wywołanie metody copyJpgFiles z klasy JpgFileCopier
+                JpgFileCopier.copyJpgFiles(sourceDir.getAbsolutePath(), destinationDir.getAbsolutePath());
+                l.setText("Kopiowanie zakończone!");
+            } catch (IOException e) {
+                e.printStackTrace();
+                l.setText("Wystąpił błąd podczas kopiowania plików");
+            }
+        } else {
+            JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-	public Dimension getPreferredSize() {
-		return new Dimension(400, 400);
-	}
+            int r = j.showOpenDialog(null);
+
+            if (r == JFileChooser.APPROVE_OPTION) {
+                if (sourceDir == null) {
+                    // Wybór folderu źródłowego
+                    sourceDir = j.getSelectedFile();
+                    l.setText("Wybrano folder źródłowy: " + sourceDir.getAbsolutePath());
+                } else {
+                    // Wybór folderu docelowego
+                    destinationDir = j.getSelectedFile();
+                    l.setText("Wybrano folder docelowy: " + destinationDir.getAbsolutePath());
+                }
+            } else {
+                l.setText("Operacja anulowana przez użytkownika");
+            }
+        }
+    }
+
+    public Dimension getPreferredSize() {
+        return new Dimension(400, 400);
+    }
 }
