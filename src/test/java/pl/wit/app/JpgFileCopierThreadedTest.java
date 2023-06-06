@@ -24,7 +24,13 @@ public class JpgFileCopierThreadedTest {
     }
 
     @Test
-    public void testCopyJpgFilesThreaded() throws InterruptedException {
+    public void testJpgFileCopierThreaded() throws InterruptedException {
+    	
+    	// Test utworzenia obiektu
+    	JpgFileCopierThreaded test = new JpgFileCopierThreaded();
+    	assertNotNull(test);    	
+    	
+    	
         // Tworzenie tymczasowych plików źródłowych
         File sourceFile1 = new File(SOURCE_DIR, "image1.jpg");
         File sourceFile2 = new File(SOURCE_DIR, "image2.jpg");

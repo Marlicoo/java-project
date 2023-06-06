@@ -15,6 +15,7 @@ public class JpgFileCopierThreaded {
      * @param threadCount    liczba wątków do użycia
      * @throws InterruptedException jeśli wystąpi błąd podczas oczekiwania na zakończenie wątków
      */
+	
     public static void copyJpgFilesThreaded(String sourceDir, String destinationDir, int threadCount) throws InterruptedException {
     	{
             ExecutorService executor = Executors.newFixedThreadPool(threadCount);

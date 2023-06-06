@@ -18,14 +18,20 @@ public class JpgFileCopierTest {
 
     @Before
     public void setUp() {
-        // Tworzenie tymczasowych folderów
+        // Utworzenie folderów testowych
         new File(SOURCE_DIR).mkdir();
         new File(DESTINATION_DIR).mkdir();
     }
 
     @Test
-    public void testCopyJpgFiles() throws IOException {
-        // Tworzenie tymczasowych plików źródłowych
+    public void testJpgFileCopier() throws IOException {
+    	
+    	
+    	// Test utworzenia obiektu
+    	JpgFileCopier test = new JpgFileCopier();
+    	assertNotNull(test);
+    	
+        // Utworzenie testowych plików źródłowych
         File sourceFile1 = new File(SOURCE_DIR, "image1.jpg");
         sourceFile1.createNewFile();
         File sourceFile2 = new File(SOURCE_DIR, "image2.jpg");
