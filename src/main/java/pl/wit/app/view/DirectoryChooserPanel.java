@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileSystemView;
 
-public class DirectoryChooser extends JPanel {
+public class DirectoryChooserPanel extends JPanel {
 	private String textFieldLabel;
 	private String buttonLabel;
 	private JLabel label;
@@ -22,7 +22,7 @@ public class DirectoryChooser extends JPanel {
 	public static final int MODE_OPEN = 1;
 	public static final int MODE_SAVE = 2;
 
-	public DirectoryChooser(String textFieldLabel, String buttonLabel) {
+	public DirectoryChooserPanel(String textFieldLabel, String buttonLabel) {
 		this.textFieldLabel = textFieldLabel;
 		this.buttonLabel = buttonLabel;
 		fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
