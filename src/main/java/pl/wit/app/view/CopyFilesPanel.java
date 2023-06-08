@@ -6,7 +6,15 @@ import javax.swing.*;
 import pl.wit.app.StartCopyListener;
 import pl.wit.app.model.DirectoryModel;
 
+/**
+ * Class <code>CopyFilesPanel<code> is responsible for displaying two directory
+ * chooser panels and button to start copy files process
+ * 
+ * @author marlena.kuc
+ *
+ */
 public class CopyFilesPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
 	public static final int MY_WIDTH = 120;
 	public static final int MY_HEIGHT = 100;
 
@@ -14,6 +22,9 @@ public class CopyFilesPanel extends JPanel {
 	private JLabel textFieldLabel;
 	private DirectoryModel model;
 
+	/**
+	 * Constructor
+	 */
 	public CopyFilesPanel() {
 		sourceDirPath = setDirectoryChooser("Wybierz folder źródłowy");
 		destinationDirPath = setDirectoryChooser("Wybierz folder docelowy");
@@ -33,6 +44,11 @@ public class CopyFilesPanel extends JPanel {
 		return new Dimension(width, height);
 	}
 
+	/**
+	 * Sets the button
+	 * 
+	 * @param btnText button text param
+	 */
 	private void setButton(String btnText) {
 		JButton button = new JButton(btnText);
 		button.addActionListener(new StartCopyListener(this));
@@ -42,6 +58,12 @@ public class CopyFilesPanel extends JPanel {
 		this.add(button);
 	}
 
+	/**
+	 * Sets the DirectoryChooserPanel directory chooser
+	 *
+	 * @param labelText the label text.
+	 * @return DirectoryChooserPanel object
+	 */
 	private DirectoryChooserPanel setDirectoryChooser(String labelText) {
 		DirectoryChooserPanel chooser = new DirectoryChooserPanel(labelText, "Wybierz");
 		chooser.setMode(DirectoryChooserPanel.MODE_SAVE);
@@ -50,35 +72,32 @@ public class CopyFilesPanel extends JPanel {
 		return chooser;
 	}
 
+	/**
+	 * Sets model data based on current values of source and destination directory
+	 */
 	public void setModel() {
 		this.model = new DirectoryModel(sourceDirPath.getSelectedFilePath(), destinationDirPath.getSelectedFilePath());
 
 	}
 
+	/**
+	 * 
+	 * @return DirectoryModel
+	 */
 	public DirectoryModel getModel() {
 		return model;
 	}
 
+	/**
+	 * Sets current label values, used for exceptions and error messages 
+	 * @param labelText
+	 * @param isVisible 
+	 * @return <code>JLabel<code> with set message
+	 */
 	public JLabel setLabelText(String labelText, boolean isVisible) {
 		textFieldLabel.setText(labelText);
 		textFieldLabel.setVisible(isVisible);
 
 		return textFieldLabel;
-	}
-
-	public DirectoryChooserPanel getSourceDirPath() {
-		return sourceDirPath;
-	}
-
-	public void setSourceDirPath(DirectoryChooserPanel sourceDirPath) {
-		this.sourceDirPath = sourceDirPath;
-	}
-
-	public DirectoryChooserPanel getDestinationDirPath() {
-		return destinationDirPath;
-	}
-
-	public void setDestinationDirPath(DirectoryChooserPanel destinationDirPath) {
-		this.destinationDirPath = destinationDirPath;
 	}
 }

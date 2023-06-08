@@ -3,12 +3,25 @@ package pl.wit.app.model;
 import java.io.File;
 import java.io.FilenameFilter;
 
+/**
+ * Class <code>DirectoryModel<code> is model that contains required data for file copier service
+ * Based on the sourceDir param all files to copy are set in imageFilesList param. 
+ * Default files filter now is .jpg 
+ * 
+ * @author marlena.kuc
+ *
+ */
 public class DirectoryModel {
 
 	private File sourceDir;
 	private File destinationDir;
 	private File[] imageFilesList;
 
+	/**
+	 * 
+	 * @param sourceDir from which files will be copied
+	 * @param destinationDir to which files will be copied
+	 */
 	public DirectoryModel(String sourceDir, String destinationDir) {
 
 		if (sourceDir.isEmpty() || destinationDir.isEmpty()) {
@@ -28,40 +41,33 @@ public class DirectoryModel {
 		setImageFilesList();
 	}
 
+	/**
+	 * 
+	 * @return source directory 
+	 */
 	public File getSourceDir() {
 		return sourceDir;
 	}
 
-	public void setSourceDir(String sourceDirPath) {
-
-		File sourceDi = new File(sourceDirPath);
-		if (!sourceDir.exists()) {
-			throw new IllegalArgumentException();
-		}
-
-		this.sourceDir = sourceDi;
-
-		setImageFilesList();
-
-	}
-
+	/**
+	 * 
+	 * @return destination directory
+	 */
 	public File getDestinationDir() {
 		return destinationDir;
 	}
 
-	public void setDestinationDir(String destinationDirPath) {
-		File destinationD = new File(destinationDirPath);
-
-		if (!destinationD.exists()) {
-			throw new IllegalArgumentException();
-		}
-		destinationDir = destinationD;
-	}
-
+	/**
+	 * 
+	 * @return files to copy filtered by .jpg filter
+	 */
 	public File[] getImageFilesList() {
 		return imageFilesList;
 	}
 
+	/**
+	 * Sets image files from source directory
+	 */
 	private void setImageFilesList() {
 		FilenameFilter jpgFilefilter = new FilenameFilter() {
 			public boolean accept(File dir, String name) {

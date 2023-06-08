@@ -5,48 +5,50 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.FileTime;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import pl.wit.app.model.DirectoryModel;
 
-public class FileCopyTask implements Runnable {
+/**
+ * The <code>FileCopyTask</code> process copy of the files from source to
+ * destination directory Class copy files with rules: file is copied to
+ * destination dir in subdirectory named as file date create metadata, file name
+ * is next number
+ * 
+ * @author dawid.glogowski
+ *
+ */
+public class FileCopyTask implements Callable<Boolean> {
 
 	private File sourceFile;
 	private File destinationDir;
 
+	/**
+	 * 
+	 * @param file File to copy
+	 * @param dir  Destination directory
+	 */
 	public FileCopyTask(File file, File dir) {
 		sourceFile = file;
 		destinationDir = dir;
 	}
 
 	@Override
-	public void run() {
+	public Boolean call() throws Exception {
 
-		try {
-			copyFile();
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-	}
+		String creationTime = (String) Files.getAttribute(sourceFile.toPath(), "creationTime").toString();
 
-	void copyFile() throws Throwable {
-		try {
-			String creationTime = (String) Files.getAttribute(sourceFile.toPath(), "creationTime").toString();
-			System.out.println(creationTime);
-			System.out.println(destinationDir.toPath());
+		File[] existigFiles = new File(destinationDir.toPath() + File.separator + creationTime).listFiles();
+		Integer fileOrder = null != existigFiles ? existigFiles.length + 1 : 1;
 
-			File[] existigFiles = new File(destinationDir.toPath() + File.separator + creationTime).listFiles();
-			Integer fileOrder = existigFiles.length + 1;
+		File finalDir = new File(destinationDir.toPath() + File.separator + creationTime, fileOrder.toString()+ ".jpg");
 
-			File finalDir = new File(destinationDir.toPath() + File.separator + creationTime, fileOrder.toString());
+		finalDir.mkdirs();
 
-			finalDir.mkdirs();
-
-			Files.copy(sourceFile.toPath(), finalDir.toPath(), StandardCopyOption.REPLACE_EXISTING);
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw e;
-		}
+		Files.copy(sourceFile.toPath(), finalDir.toPath(), StandardCopyOption.REPLACE_EXISTING);
+		
+		return true;
 	}
 }
