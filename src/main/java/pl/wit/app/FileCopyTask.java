@@ -37,7 +37,9 @@ public class FileCopyTask implements Callable<Boolean> {
 		lock.lock();
 
 		try {
-			String creationTime = (String) Files.getAttribute(sourceFile.toPath(), "creationTime").toString();
+			String creationTime = (String) Files.getAttribute(sourceFile.toPath(), "creationTime").toString().replace(":", "_");
+			
+			
 
 			File[] existigFiles = new File(destinationDir.toPath() + File.separator + creationTime).listFiles();
 			Integer fileOrder = null != existigFiles ? existigFiles.length + 1 : 1;

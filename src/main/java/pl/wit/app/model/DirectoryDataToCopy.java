@@ -22,7 +22,11 @@ public class DirectoryDataToCopy {
 	 * @param sourceDir from which files will be copied
 	 * @param destinationDir to which files will be copied
 	 */
+	
+	
 	public DirectoryDataToCopy(String sourceDir, String destinationDir) {
+		
+		
 
 		if (sourceDir.isEmpty() || destinationDir.isEmpty()) {
 			String folder = sourceDir.isEmpty() ? "źrodłowego" : "docelowego";
