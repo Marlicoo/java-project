@@ -9,6 +9,7 @@ import org.junit.rules.TemporaryFolder;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Klasa testowa kopiująca plik do folderu docelowego.
@@ -33,9 +34,14 @@ public class FileCopyTaskTest {
 		fileDateCreate = (String) Files.getAttribute(sourceFile.toPath(), "creationTime").toString();
 
 		copyTaskUnderTest = new FileCopyTask(sourceFile, destinationDir.getRoot());
+		copyTaskUnderTest.addLock(new ReentrantLock());
 	}
 
 	@Test
+	/**
+	 * 
+	 * @throws Exception from copy task
+	 */
 	public void testCopyFileToGivenDestinationDir() throws Exception {
 		Boolean result = copyTaskUnderTest.call();
 		assertTrue(result);

@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.concurrent.Callable;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * The <code>FileCopyTask</code> process copy of the files from source to
@@ -18,6 +19,7 @@ public class FileCopyTask implements Callable<Boolean> {
 
 	private File sourceFile;
 	private File destinationDir;
+	private ReentrantLock lock;
 
 	/**
 	 * 
@@ -32,17 +34,29 @@ public class FileCopyTask implements Callable<Boolean> {
 	@Override
 	public Boolean call() throws Exception {
 
-		String creationTime = (String) Files.getAttribute(sourceFile.toPath(), "creationTime").toString();
+		lock.lock();
 
-		File[] existigFiles = new File(destinationDir.toPath() + File.separator + creationTime).listFiles();
-		Integer fileOrder = null != existigFiles ? existigFiles.length + 1 : 1;
+		try {
+			String creationTime = (String) Files.getAttribute(sourceFile.toPath(), "creationTime").toString();
 
-		File finalDir = new File(destinationDir.toPath() + File.separator + creationTime, fileOrder.toString()+ ".jpg");
+			File[] existigFiles = new File(destinationDir.toPath() + File.separator + creationTime).listFiles();
+			Integer fileOrder = null != existigFiles ? existigFiles.length + 1 : 1;
 
-		finalDir.mkdirs();
+			File finalDir = new File(destinationDir.toPath() + File.separator + creationTime,
+					fileOrder.toString() + ".jpg");
+			finalDir.mkdirs();
 
-		Files.copy(sourceFile.toPath(), finalDir.toPath(), StandardCopyOption.REPLACE_EXISTING);
-		
+			Files.copy(sourceFile.toPath(), finalDir.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+		} finally {
+			lock.unlock();
+		}
+
 		return true;
+	}
+
+	public void addLock(ReentrantLock lock) {
+		this.lock = lock;
+
 	}
 }

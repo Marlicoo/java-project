@@ -7,7 +7,7 @@ import pl.wit.app.StartCopyListener;
 import pl.wit.app.model.DirectoryDataToCopy;
 
 /**
- * Class <code>CopyFilesPanel<code> is responsible for displaying two directory
+ * Class <code>CopyFilesPanel</code> is responsible for displaying two directory
  * chooser panels and button to start copy files process
  * 
  * @author marlena.kuc
@@ -15,7 +15,15 @@ import pl.wit.app.model.DirectoryDataToCopy;
  */
 public class CopyFilesPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
+	
+	/** 
+	 * Width of the panel
+	 */
 	public static final int MY_WIDTH = 120;
+	
+	/** 
+	 * Height of the panel
+	 */
 	public static final int MY_HEIGHT = 100;
 
 	private DirectoryChooserPanel sourceDirPath, destinationDirPath;
@@ -91,9 +99,9 @@ public class CopyFilesPanel extends JPanel {
 
 	/**
 	 * Sets current label values, used for exceptions and error messages 
-	 * @param labelText
-	 * @param isVisible 
-	 * @return <code>JLabel<code> with set message
+	 * @param labelText text of the label								
+	 * @param isVisible sets label visibility
+	 * @return <code>JLabel</code> with set message
 	 */
 	public JLabel setLabelText(String labelText, boolean isVisible) {
 		textFieldLabel.setText(labelText);
@@ -102,6 +110,10 @@ public class CopyFilesPanel extends JPanel {
 		return textFieldLabel;
 	}
 
+	/**
+	 * 
+	 * @return start button object
+	 */
 	public JButton getStartButton() {
 		return startButton;
 	}

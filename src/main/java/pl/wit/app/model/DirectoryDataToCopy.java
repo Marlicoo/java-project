@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 
 /**
- * Class <code>DirectoryModel<code> is model that contains required data for file copier service
+ * Class <code>DirectoryModel</code> is model that contains required data for file copier service
  * Based on the sourceDir param all files to copy are set in imageFilesList param. 
  * Default files filter now is .jpg and could be extended with any format as an extra param in the constructor
  * 
@@ -59,7 +59,7 @@ public class DirectoryDataToCopy {
 
 	/**
 	 * 
-	 * @return files to copy filtered by .jpg filter
+	 * @return files to copy filtered by jpg filter
 	 */
 	public File[] getImageFilesList() {
 		return imageFilesList;

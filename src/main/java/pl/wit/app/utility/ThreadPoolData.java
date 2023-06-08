@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.util.Properties;
 
 /**
- * <code>ThreadPoolData<code> to read and pass set threads value in a config
+ * <code>ThreadPoolData</code> to read and pass set threads value in a config
  * file
  * 
  * @author marlena.kuc
@@ -15,7 +15,7 @@ public class ThreadPoolData {
 	/**
 	 * 
 	 * @return set max threads value
-	 * @throws Throwable
+	 * @throws Throwable if file doesn't exists
 	 */
 	public static Integer getMaxThreadPool() throws Throwable {
 		try (FileReader reader = new FileReader("config")) {

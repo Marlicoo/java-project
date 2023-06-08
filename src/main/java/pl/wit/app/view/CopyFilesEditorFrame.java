@@ -3,7 +3,7 @@ package pl.wit.app.view;
 import javax.swing.*;
 
 /**
- * Class <code>CopyFilesEditorFrame<code> is the main frame for copy file app
+ * Class <code>CopyFilesEditorFrame</code> is the main frame for copy file app
  * @author marlena.kuc
  *
  */
@@ -12,7 +12,7 @@ public class CopyFilesEditorFrame extends JFrame  {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Constructor which generates <code>CopyFilesPanel<code>
+	 * Constructor which generates <code>CopyFilesPanel</code>
 	 * 
 	 */
 	public CopyFilesEditorFrame() {

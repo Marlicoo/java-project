@@ -6,7 +6,7 @@ import pl.wit.app.model.DirectoryDataToCopy;
 
 /**
  * The <code>FileCopierService</code> is used to set copy files
- * tasks and process copy of <code>FileCopyTask<code>
+ * tasks and process copy of <code>FileCopyTask</code>
  *  
  * @author dawid.glogowski
  *

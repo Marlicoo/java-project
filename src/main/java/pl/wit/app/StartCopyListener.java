@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import pl.wit.app.view.CopyFilesPanel;
 
 /**
- * The <code>StartCopyListener</code> implements <code>ActionListener<code>
+ * The <code>StartCopyListener</code> implements <code>ActionListener</code>
  * and it's trigger on start button being pressed,
- * Class triggers <code>FileCopierService<code>
+ * Class triggers <code>FileCopierService</code>
  * In case of any error it sets message in a view label
  * 
  * @author marlena.kuc
