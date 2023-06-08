@@ -31,7 +31,7 @@ public class FileCopyTaskTest {
 		sourceDir.create();
 
 		sourceFile = sourceDir.newFile("image1.jpg");
-		fileDateCreate = (String) Files.getAttribute(sourceFile.toPath(), "creationTime").toString();
+		fileDateCreate = (String) Files.getAttribute(sourceFile.toPath(), "creationTime").toString().replace(":", "-");
 
 		copyTaskUnderTest = new FileCopyTask(sourceFile, destinationDir.getRoot());
 		copyTaskUnderTest.addLock(new ReentrantLock());
