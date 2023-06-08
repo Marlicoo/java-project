@@ -2,19 +2,23 @@ package pl.wit.app.view;
 
 import static org.junit.Assert.*;
 
-import java.awt.FlowLayout;
-import java.io.File;
+
 import javax.swing.*;
 
 import org.junit.Test;
-
-public class CopyFilesEditorUITest {
+/**
+ * Test klasy tworzącej główne okienko kopiowania.
+ * 
+ * @author Michał Lemański
+ *
+ */
+public class CopyFilesEditorFrameTest {
 
 	@Test
     public void testCopyFilesEditorUI() {
 		
 		// Utworzenie nowego obiektu naszego okienka
-		CopyFilesEditorUI ui = new CopyFilesEditorUI();
+		CopyFilesEditorFrame ui = new CopyFilesEditorFrame();
         
         // Sprawdzenie czy powstał obiekt okienka
         assertNotNull(ui);
