@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import pl.wit.app.StartCopyListener;
-import pl.wit.app.model.DirectoryModel;
+import pl.wit.app.model.DirectoryDataToCopy;
 
 /**
  * Class <code>CopyFilesPanel<code> is responsible for displaying two directory
@@ -20,7 +20,8 @@ public class CopyFilesPanel extends JPanel {
 
 	private DirectoryChooserPanel sourceDirPath, destinationDirPath;
 	private JLabel textFieldLabel;
-	private DirectoryModel model;
+	private DirectoryDataToCopy model;
+	private JButton startButton;
 
 	/**
 	 * Constructor
@@ -50,12 +51,12 @@ public class CopyFilesPanel extends JPanel {
 	 * @param btnText button text param
 	 */
 	private void setButton(String btnText) {
-		JButton button = new JButton(btnText);
-		button.addActionListener(new StartCopyListener(this));
+		startButton = new JButton(btnText);
+		startButton.addActionListener(new StartCopyListener(this));
 
 		int mnemonic = (int) btnText.charAt(0);
-		button.setMnemonic(mnemonic);
-		this.add(button);
+		startButton.setMnemonic(mnemonic);
+		this.add(startButton);
 	}
 
 	/**
@@ -76,7 +77,7 @@ public class CopyFilesPanel extends JPanel {
 	 * Sets model data based on current values of source and destination directory
 	 */
 	public void setModel() {
-		this.model = new DirectoryModel(sourceDirPath.getSelectedFilePath(), destinationDirPath.getSelectedFilePath());
+		this.model = new DirectoryDataToCopy(sourceDirPath.getSelectedFilePath(), destinationDirPath.getSelectedFilePath());
 
 	}
 
@@ -84,7 +85,7 @@ public class CopyFilesPanel extends JPanel {
 	 * 
 	 * @return DirectoryModel
 	 */
-	public DirectoryModel getModel() {
+	public DirectoryDataToCopy getModel() {
 		return model;
 	}
 
@@ -99,5 +100,9 @@ public class CopyFilesPanel extends JPanel {
 		textFieldLabel.setVisible(isVisible);
 
 		return textFieldLabel;
+	}
+
+	public JButton getStartButton() {
+		return startButton;
 	}
 }

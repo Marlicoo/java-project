@@ -2,7 +2,7 @@ package pl.wit.app;
 
 import java.io.File;
 
-import pl.wit.app.model.DirectoryModel;
+import pl.wit.app.model.DirectoryDataToCopy;
 
 /**
  * The <code>FileCopierService</code> is used to set copy files
@@ -14,12 +14,12 @@ import pl.wit.app.model.DirectoryModel;
  */
 public class FileCopierService {
 
-	private DirectoryModel directoryData;
+	private DirectoryDataToCopy directoryData;
 
 	/**
 	 * @param dirModel
 	 */
-	public FileCopierService(DirectoryModel dirModel) {
+	public FileCopierService(DirectoryDataToCopy dirModel) {
 		directoryData = dirModel;
 	}
 
@@ -29,7 +29,7 @@ public class FileCopierService {
 	public void copy() throws Throwable {
 
 		try {
-			FileCopyTasks tasks = new FileCopyTasks();
+			FileCopyTasksExecutor tasks = new FileCopyTasksExecutor();
 
 			for (File file : directoryData.getImageFilesList()) {
 				tasks.add(new FileCopyTask(file, directoryData.getDestinationDir()));

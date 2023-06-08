@@ -1,15 +1,9 @@
 package pl.wit.app;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.attribute.FileTime;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import pl.wit.app.model.DirectoryModel;
 
 /**
  * The <code>FileCopyTask</code> process copy of the files from source to

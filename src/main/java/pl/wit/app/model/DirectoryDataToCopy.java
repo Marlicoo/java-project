@@ -6,12 +6,12 @@ import java.io.FilenameFilter;
 /**
  * Class <code>DirectoryModel<code> is model that contains required data for file copier service
  * Based on the sourceDir param all files to copy are set in imageFilesList param. 
- * Default files filter now is .jpg 
+ * Default files filter now is .jpg and could be extended with any format as an extra param in the constructor
  * 
  * @author marlena.kuc
  *
  */
-public class DirectoryModel {
+public class DirectoryDataToCopy {
 
 	private File sourceDir;
 	private File destinationDir;
@@ -22,7 +22,7 @@ public class DirectoryModel {
 	 * @param sourceDir from which files will be copied
 	 * @param destinationDir to which files will be copied
 	 */
-	public DirectoryModel(String sourceDir, String destinationDir) {
+	public DirectoryDataToCopy(String sourceDir, String destinationDir) {
 
 		if (sourceDir.isEmpty() || destinationDir.isEmpty()) {
 			String folder = sourceDir.isEmpty() ? "źrodłowego" : "docelowego";
@@ -34,7 +34,7 @@ public class DirectoryModel {
 		this.destinationDir = new File(destinationDir);
 
 		if (!this.sourceDir.exists() || !this.sourceDir.exists()) {
-			String folder = this.sourceDir.exists() ? "źródłowy" : "docelowy";
+			String folder = !this.sourceDir.exists() ? "źródłowy" : "docelowy";
 			throw new IllegalArgumentException("Folder " + folder + " nie istnieje");
 		}
 

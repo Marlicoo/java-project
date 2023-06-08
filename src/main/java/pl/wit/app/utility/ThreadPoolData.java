@@ -4,7 +4,8 @@ import java.io.FileReader;
 import java.util.Properties;
 
 /**
- * <code>ThreadPoolData<code> to read and pass set threads value in a config file
+ * <code>ThreadPoolData<code> to read and pass set threads value in a config
+ * file
  * 
  * @author marlena.kuc
  *

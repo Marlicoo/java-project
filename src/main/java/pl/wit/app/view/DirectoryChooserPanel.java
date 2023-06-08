@@ -12,8 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileSystemView;
 
 public class DirectoryChooserPanel extends JPanel {
-	private String textFieldLabel;
-	private String buttonLabel;
+	private static final long serialVersionUID = 1L;
 	private JLabel label;
 	private JTextField textField;
 	private JButton button;
@@ -23,8 +22,6 @@ public class DirectoryChooserPanel extends JPanel {
 	public static final int MODE_SAVE = 2;
 
 	public DirectoryChooserPanel(String textFieldLabel, String buttonLabel) {
-		this.textFieldLabel = textFieldLabel;
-		this.buttonLabel = buttonLabel;
 		fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
@@ -56,7 +53,7 @@ public class DirectoryChooserPanel extends JPanel {
 		return textField.getText();
 	}
 
-	private void buttonActionPerformed(ActionEvent evt) {
+	void buttonActionPerformed(ActionEvent evt) {
 		if (mode == MODE_OPEN) {
 			if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 				textField.setText(fileChooser.getSelectedFile().getAbsolutePath());
@@ -66,6 +63,10 @@ public class DirectoryChooserPanel extends JPanel {
 				textField.setText(fileChooser.getSelectedFile().getAbsolutePath());
 			}
 		}
+	}
+
+	public JButton getButton() {
+		return button;
 	}
 
 }
