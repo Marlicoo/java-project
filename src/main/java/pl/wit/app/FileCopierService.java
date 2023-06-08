@@ -4,14 +4,28 @@ import java.io.File;
 
 import pl.wit.app.model.DirectoryModel;
 
+/**
+ * The <code>FileCopierService</code> is used to set copy files
+ * tasks and process copy of <code>FileCopyTask<code>
+ *  
+ * @author dawid.glogowski
+ *
+ *
+ */
 public class FileCopierService {
 
 	private DirectoryModel directoryData;
 
+	/**
+	 * @param dirModel
+	 */
 	public FileCopierService(DirectoryModel dirModel) {
 		directoryData = dirModel;
 	}
 
+	/**
+	 * @throws Throwable
+	 */
 	public void copy() throws Throwable {
 
 		try {
